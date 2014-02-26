@@ -187,15 +187,6 @@ vicious.register(netwidget, vicious.widgets.net,
                 '<span color="#CC9090">⇩${enp2s0f0 down_kb}</span>' ..
                 '<span color="#7F9F7F">⇧${enp2s0f0 up_kb}</span>', 3)
 
--- clock
--- clockwidget = awful.widget.textclock(" %a %b %d %H:%M:%S ", 1)
--- clockwidget_t = awful.tooltip( {
---     objects = {clockwidget},
---     timer_function = function ()
---         return tooltip_func_text('cal -1s')
---     end
--- })
-
 -- Textclock
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 textclock = awful.widget.textclock(markup("#7788af", "%a %b %d") .. markup("#343639", ">") .. markup("#de5e1e", " %H:%M:%S "), 1)   -- 1 means update per 1 second
