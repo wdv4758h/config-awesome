@@ -214,7 +214,7 @@ memwidget_t = awful.tooltip( {
     end
 })
 vicious.register(memwidget, vicious.widgets.mem,
-                 '$2MB/$3MB (<span color="#00EE00">$1%</span>)', 5)
+                 '<span color="#e0da37">$2MB/$3MB</span> (<span color="#00EE00">$1%</span>)', 5)
 
 -- battery status
 batwidget = wibox.widget.textbox()
