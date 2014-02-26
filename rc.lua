@@ -30,23 +30,23 @@ local volume = require("volume")
 -- default backlight
 awful.util.spawn_with_shell("xbacklight -set 45")
 
--- start the xscreensaver application,here -no-splash switch says not to show splash screen when starting xscreensaver
-awful.util.spawn_with_shell("xscreensaver -no-splash")
+-- {{{ Autostart applications
+function run_once(cmd)
+  findme = cmd
+  firstspace = cmd:find(" ")
+  if firstspace then
+     findme = cmd:sub(0, firstspace-1)
+  end
+  awful.util.spawn_with_shell("pgrep -u $USER -x " .. findme .. " > /dev/null || (" .. cmd .. ")")
+end
 
--- wireless (nm)
-awful.util.spawn_with_shell("if [ ! `pgrep nm-applet` ]; then `nm-applet`; fi")
-
--- urxvtd
-awful.util.spawn_with_shell("if [ ! `pgrep urxvtd` ]; then `urxvtd -q -f -o &`; fi")
-
--- Xcompmgr
-awful.util.spawn_with_shell("xcompmgr -cF &")
-
--- Dropbox
-awful.util.spawn_with_shell("if [ ! `pgrep dropboxd` ]; then `dropboxd`; fi")
-
--- Skype
--- awful.util.spawn_with_shell("if [ ! `pgrep skype` ]; then `skype`; fi")
+run_once("nm-applet")
+run_once("urxvtd")
+run_once("dropboxd")
+run_once("xscreensaver -no-splash")
+run_once("xcompmgr -cF")
+run_once("skype")
+-- }}}
 
 -- {{{ Font Setting -----------------------------------------------------------
 awesome.font = "LiHei Pro 12"
