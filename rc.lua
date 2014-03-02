@@ -233,16 +233,6 @@ batwidget:buttons(
     )
 )
 
--- temperature status
-thermalwidget = wibox.widget.textbox()
-thermalwidget_t = awful.tooltip( {
-    objects = {thermalwidget},
-    timer_function = function ()
-        return tooltip_func_text('sensors')
-    end
-})
-vicious.register(thermalwidget, vicious.widgets.thermal, " | CPU: $1°C | ", 10, { "coretemp.0", "core"} )
-
 -- volume (alas)
 volicon = wibox.widget.imagebox(beautiful.widget_vol)
 volumewidget = lain.widgets.alsa({
@@ -256,12 +246,12 @@ volumewidget = lain.widgets.alsa({
 })
 
 -- Coretemp
--- tempicon = wibox.widget.imagebox(beautiful.widget_temp)
--- tempwidget = lain.widgets.temp({
---     settings = function()
---         widget:set_markup(markup("#f1af5f", coretemp_now .. "°C "))
---     end
--- })
+tempicon = wibox.widget.imagebox(beautiful.widget_temp)
+tempwidget = lain.widgets.temp({
+    settings = function()
+        widget:set_markup(markup("#f1af5f", "CPU " .. coretemp_now .. "°C "))
+    end
+})
 
 -- Battery
 -- baticon = wibox.widget.imagebox(beautiful.widget_batt)
@@ -405,9 +395,9 @@ for s = 1, screen.count() do
         right_layout:add(memwidget)
     end
     right_layout:add(separator)
-    -- right_layout:add(tempwidget)
     right_layout:add(batwidget)
-    right_layout:add(thermalwidget)
+    right_layout:add(separator)
+    right_layout:add(tempwidget)
     right_layout:add(textclock)
     right_layout:add(mylayoutbox[s])
 
