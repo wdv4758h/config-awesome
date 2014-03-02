@@ -45,7 +45,7 @@ run_once("urxvtd")
 run_once("dropboxd")
 run_once("xscreensaver -no-splash")
 run_once("xcompmgr -cF")
-run_once("skype")
+-- run_once("skype")
 -- }}}
 
 -- {{{ Font Setting -----------------------------------------------------------
@@ -366,7 +366,7 @@ for s = 1, screen.count() do
 
     -- Widgets that are aligned to the left
     local left_layout = wibox.layout.fixed.horizontal()
-    left_layout:add(mylauncher)
+    -- left_layout:add(mylauncher)
     left_layout:add(mytaglist[s])
     left_layout:add(mypromptbox[s])
 
@@ -390,6 +390,7 @@ for s = 1, screen.count() do
         right_layout:add(netwidget)
         right_layout:add(separator)
         right_layout:add(volume_widget)
+        -- right_layout:add(volumewidget)
         right_layout:add(cpuwidget)
         right_layout:add(separator)
         right_layout:add(memwidget)
