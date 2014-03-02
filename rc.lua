@@ -189,7 +189,7 @@ vicious.register(netwidget, vicious.widgets.net,
 clockicon = wibox.widget.imagebox(beautiful.widget_clock)
 textclock = awful.widget.textclock(markup("#7788af", "%a %b %d") .. markup("#343639", ">") .. markup("#de5e1e", " %H:%M:%S "), 1)   -- 1 means update per 1 second
 -- Calendar
-lain.widgets.calendar:attach(textclock, { font_size = 10 })
+lain.widgets.calendar:attach(textclock, { font = "monaco", font_size = 10 })
 
 
 -- CPU usage
