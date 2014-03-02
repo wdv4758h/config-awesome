@@ -25,8 +25,6 @@ markup     = lain.util.markup
 local vicious = require("vicious")
 -- local vicious = require("chocoplant")
 
-local volume = require("volume")
-
 -- default backlight
 awful.util.spawn_with_shell("xbacklight -set 45")
 
@@ -245,6 +243,18 @@ thermalwidget_t = awful.tooltip( {
 })
 vicious.register(thermalwidget, vicious.widgets.thermal, " | CPU: $1°C | ", 10, { "coretemp.0", "core"} )
 
+-- volume (alas)
+volicon = wibox.widget.imagebox(beautiful.widget_vol)
+volumewidget = lain.widgets.alsa({
+    timeout = 0.2,
+    settings = function()
+        if volume_now.status == "off" then
+            volume_now.level = volume_now.level .. "M"
+        end
+        widget:set_markup(markup("#7493d2", "♪ " .. volume_now.level .. "% "))
+    end
+})
+
 -- Coretemp
 -- tempicon = wibox.widget.imagebox(beautiful.widget_temp)
 -- tempwidget = lain.widgets.temp({
@@ -389,8 +399,7 @@ for s = 1, screen.count() do
         right_layout:add(cmuswidget)
         right_layout:add(netwidget)
         right_layout:add(separator)
-        right_layout:add(volume_widget)
-        -- right_layout:add(volumewidget)
+        right_layout:add(volumewidget)
         right_layout:add(cpuwidget)
         right_layout:add(separator)
         right_layout:add(memwidget)
