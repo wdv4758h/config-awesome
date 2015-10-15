@@ -1,6 +1,7 @@
 [submodule "lain"]
 	path = lain
 	url = https://github.com/copycat-killer/lain.git
+	ignore = dirty
 [submodule "vicious"]
 	path = vicious
 	url = http://git.sysphere.org/vicious/
